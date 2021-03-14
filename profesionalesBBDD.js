@@ -175,7 +175,7 @@ app.put("/profesionales", function (req, res) {
       if (err) {
         res.send(err);
       } else {
-        res.send(profesional);
+        res.send(`El profesional ha sido modificado correctamente`);
       }
     }
   );
@@ -184,10 +184,10 @@ app.put("/profesionales", function (req, res) {
 app.delete("/profesionales", function (req, res) {
   if (req.body._id !== undefined) {
     Profesional.findByIdAndRemove(req.body._id, checkRespuesta);
-    function checkRespuesta(err, respuesta) {
+    function checkRespuesta(err, profesional) {
       if (err) {
         res.send(err);
-      } else res.send("El profesional ha sido borrado de la base de datos");
+      } else res.send(`${profesional.name} ha sido borrado de la base de datos`);
     }
   }
 });
